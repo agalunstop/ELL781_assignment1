@@ -5,26 +5,48 @@ struct graph MAKENULL(struct graph G)
 	int i,j;
 	int m = 0;
 	
-	//loop to write team names to an array
+	write_team_names(G);		// write team names to G.matrix
+	populate_adj_matrix(G);		// populate adjacency matrix based on 
+
+}
+
+void write_team_names(struct graph G)
+{
+	int i,j;
+	int m = 0;
+
 	for (i=1;i<=G.n;i++)
 	{
 		for (j=1;j<=G.n;j++)
 		{
 			if(i!=j)
 			{
-				G.matches[m]= 10*i + j;
+				G.matches[m]= 10*i + j;		// first team at tens place, 2nd team at ones place
 				m++;
 			}
 		}
 	}
+}
 
-	//loop to populate adjacency matrix
-	int matrix[m][m];		//2D matrix to store edges, dimension is no_of_teams*no_of_teams
-	for (i=0;i<m;i++)
+void populate_adj_matrix(struct graph G)
+{
+	int i_first;		//first team in column index matches
+	int i_second;		//second team in column index matches
+	int j_first;		//first team in row index matches
+	int j_second;		//second team in row index matches
+
+	for (i=0;i<G.m;i++)		// column index
 	{
-		for (j=0;j<m;j++)
+		for (j=0;j<G.m;j++)		// row index
 		{
-			if()
-			G.matrix[i][j] = 1;
-			G.matrix[i][j] = 0;
+			i_first = G.matches[i]/10;		// tens place
+			i_second = G.matches[i] % 10;	// ones place
+			j_first = G.matches[j]/10;		// tens place
+			j_second = G.matches[j] % 10;	// ones place
+
+			if((i_first == j_first)||(i_first == j_second)||
+				(i_second == j_first)||(i_second == j_second))
+				G.matrix[i][j] = 1;			// edge because of clash
+			else
+				G.matrix[i][j] = 0;			// no edge
 }
