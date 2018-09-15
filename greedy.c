@@ -10,7 +10,7 @@ greedy(struct graph G, struct list prsntclr)		//g is graph, presentclr is array
 	MAKENULL(prsntclr);	
 	
 	int p_v = FIRST_UNCOLORED(G);		//position of first uncolored vertex
-	v = RETRIEVE_VERTEX(p,G);			// give vertex at position p
+	v = RETRIEVE_VERTEX(p_v,G);			// give vertex at position p
 	while (v != NULL)		// loop on all uncolored vertex of graph 
 	{
 		found = false;
@@ -35,3 +35,42 @@ bool IS_EDGE(int p_v,int n)
 	int p_n = LOCATE(n,G);				// return index of n in graph
 	return RETRIEVE_EDGE(p_v,p_n);		
 }
+
+int FIRST_UNCOLORED(struct graph G)
+{
+	int p;
+	for(int i=0;i<G.matches;i++)
+	{
+		p=i;					//returns postion of first uncolored vertex
+		break;
+	}
+	return p;
+
+	
+}
+int RETRIEVE_VERTEX(int p_v,struct graph G)
+{
+	p_v = FIRST_UNCOLORED(G);          		//gets the postion from first_uncolored
+	int vertex = G.matches[p_v];			//gives vertex at position p
+	return vertex;
+}
+
+
+void MARK_COLORED(int p_v, struct graph G){
+{
+	p_v=FIRST_UNCOLORED(G);
+	for(int p_v=0;p_v<G.colored;p_v++) 			//loop over color status of nodes
+	{
+		color[p_v] = true;                        //mark the vertex as colored
+	}
+}
+
+
+
+
+int NEXT_UNCOLORED(int p, struct graph G)
+{
+	
+
+		
+
