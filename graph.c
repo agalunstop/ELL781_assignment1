@@ -1,11 +1,11 @@
 #include "graph.h"
 
-struct graph MAKENULL(struct graph G)
+void MAKENULL(int n, struct graph G)
 {
 	int i,j;
 	int m = 0;
 	
-	write_team_names(G);		// write team names to G.matrix
+	write_team_names(n, G);		// write team names to G.matches
 	populate_adj_matrix(G);		// populate adjacency matrix based on 
 	G.colored[] = {false};		// all uncolored initially
 
