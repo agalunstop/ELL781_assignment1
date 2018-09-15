@@ -1,0 +1,12 @@
+#This algorithm has been designed for maximum of 9 teams. n<2 or n>9 is not valid
+
+gcc graph.c list.c greedy.c main.c
+./a.out 2
+./a.out 3
+./a.out 4
+./a.out 5
+./a.out 6
+./a.out 7
+./a.out 8
+./a.out 9
+./a.out 10

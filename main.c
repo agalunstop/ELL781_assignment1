@@ -10,6 +10,11 @@ void main(int argc, char *argv[])
 {
 	int n = atoi(argv[1]);
 	printf("Number of teams = %d\n",n);
+	if(n<2 || n>9)
+	{
+		printf("ERROR: Number of teams can be 2 to 9 only\n\n");
+		exit(1);
+	}
 	struct graph G;
 	struct graph *ptr_g = &G;
 	struct list new_clr;
@@ -23,30 +28,24 @@ void main(int argc, char *argv[])
 	{
 		printf("%d, ",G.matches[i]);
 	}
-	printf("\n");
+	printf("\n\n");
 
 	for (int i=0; i<n*(n-1); i++)
-		printf("%d ",i);
-	printf("\n");
+	//printf("%d ",i);
+	//printf("\n");
 	for (int i=0; i<n*(n-1);i++)
 	{
 		for (int j=0; j<n*(n-1);j++)
 		{
-			printf("%d ", G.matrix[i][j]);
+	//		printf("%d ", G.matrix[i][j]);
 		}
-		printf("\n");
+	//	printf("\n");
 	}
 		
-	printf("\n");
+	//printf("\n");
 
 
-//	ptr_g->colored[0] = true;
-//	int p_v = FIRST_UNCOLORED(ptr_g);
-//	printf("%d\n",p_v);
-//
-//	int v = RETRIEVE_VERTEX(p_v,ptr_g);
-//	printf("%d\n",v);
-//
+	int no_of_days = 0;
 	while(!ALL_COLORED(ptr_g))
 	{
 		MAKENULL_L(ptr_new_clr);
@@ -54,9 +53,11 @@ void main(int argc, char *argv[])
 
 		for(int i=0;i<END(ptr_new_clr);i++)
 		{
-			printf("%d, ",ptr_new_clr->elements[i]);
+			printf("(%d); ",ptr_new_clr->elements[i]);
 		}	
-		printf("\n");
+		no_of_days+=2;
+		printf("\n\n");
 	}
+	printf("number of minimum days = %d\n\n",no_of_days-1);
 
 }
