@@ -9,7 +9,7 @@ greedy(struct graph G, struct list prsntclr)		//g is graph, presentclr is array
 	int v,n;			// vertex in graph, node in prsntclr
 	MAKENULL(prsntclr);	
 	
-	int p = FIRST_UNCOLORED(G);		//position of first uncolored vertex
+	int p_v = FIRST_UNCOLORED(G);		//position of first uncolored vertex
 	v = RETRIEVE_VERTEX(p,G);			// give vertex at position p
 	while (v != NULL)		// loop on all uncolored vertex of graph 
 	{
@@ -17,19 +17,21 @@ greedy(struct graph G, struct list prsntclr)		//g is graph, presentclr is array
 		for (int i=0; i<SIZE(prsntclr);i++)
 		{
 			n = RETREIVE(i,prsntclr);
-			if(IS_EDGE(v,n))		// edge found = true
+			if(IS_EDGE(p_v,n))		// edge found = true
 				found = true;
 		}
 		if (found == false)			// edge not found b/w v,n
 		{
 			INSERT(v,END(prsntclr),prsntclr);	// add v to prsntclr
-			MARK_COLORED(p,G);			// mark v colored in G
+			MARK_COLORED(p_v,G);			// mark v colored in G
 		}
-	p = NEXT_UNCOLORED(p,G);		// position of next uncolored vertex
-	v = RETRIEVE_VERTEX(p);			// give vertex at position p
+	p_v = NEXT_UNCOLORED(p_v,G);		// position of next uncolored vertex
+	v = RETRIEVE_VERTEX(p_v);			// give vertex at position p
 	}
 }
 			
-bool IS_EDGE(v,n)
+bool IS_EDGE(int p_v,int n)
 {
-	int p = LOCATE(n,G);
+	int p_n = LOCATE(n,G);				// return index of n in graph
+	return RETRIEVE_EDGE(p_v,p_n);		
+}
