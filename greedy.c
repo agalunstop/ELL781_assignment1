@@ -10,7 +10,7 @@ greedy(struct graph G, struct list prsntclr)		//g is graph, presentclr is array
 	MAKENULL(prsntclr);	
 	
 	int p_v = FIRST_UNCOLORED(G);		//position of first uncolored vertex
-	v = RETRIEVE_VERTEX(p,G);			// give vertex at position p
+	v = RETRIEVE_VERTEX(p_v,G);			// give vertex at position p
 	while (v != NULL)		// loop on all uncolored vertex of graph 
 	{
 		found = false;
