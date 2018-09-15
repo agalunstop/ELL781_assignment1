@@ -7,12 +7,7 @@ include "list.h"
 //------End of the list will be return------//
 
 int END(struct list L){
-        int *q;
-        q=L;
-        while(q!=L.elements[L.maxlength+1]){
-                q=q+1;
-        }
-        return q;
+        return L.last+1;
 }
 
 
@@ -23,7 +18,7 @@ int END(struct list L){
 //------Makes the function to become empty and returns END(L)-----------//
 
 void MAKENULL(struct list L){
-        return END(L);
+        L.last = 0;
         }
 
 
@@ -37,7 +32,7 @@ void INSERT(char x,int p,struct list L)
 {
         int q;
         if(L.last >= L.maxlength ){
-                printf("List is full");
+                printf("error: List is full");
         }
         else if(p>L.last+1 || p<0){
                 printf("position does not exist");

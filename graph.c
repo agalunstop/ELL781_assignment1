@@ -7,6 +7,7 @@ struct graph MAKENULL(struct graph G)
 	
 	write_team_names(G);		// write team names to G.matrix
 	populate_adj_matrix(G);		// populate adjacency matrix based on 
+	G.colored[] = {false};		// all uncolored initially
 
 }
 
@@ -44,9 +45,12 @@ void populate_adj_matrix(struct graph G)
 			j_first = G.matches[j]/10;		// tens place
 			j_second = G.matches[j] % 10;	// ones place
 
-			if((i_first == j_first)||(i_first == j_second)||
-				(i_second == j_first)||(i_second == j_second))
-				G.matrix[i][j] = 1;			// edge because of clash
+			if((i_first == j_first) && (i_second == j_second))
+				G.matrix[i][j] = 0;			// invalid condition/self loop
 			else
-				G.matrix[i][j] = 0;			// no edge
+				if((i_first == j_first)||(i_first == j_second)||
+					(i_second == j_first)||(i_second == j_second))
+					G.matrix[i][j] = 1;			// edge because of team clash
+				else
+					G.matrix[i][j] = 0;			// no edge
 }
