@@ -4,11 +4,10 @@
 void write_team_names(int n, struct graph *g);
 void populate_adj_matrix(int n, struct graph *g);
 
-void MAKENULL_G(int n, struct graph *G)
+void MAKENULL_G(int n, struct graph *g)
 {
-	write_team_names(n, G);		// write team names to G.matches and G.colored = false
-	populate_adj_matrix(n*(n-1), G);		// populate adjacency matrix based on 
-	G->num_of_matches = (n*(n-1))-1;		// number of matches
+	write_team_names(n, g);		// write team names to G.matches
+	populate_adj_matrix(n*(n-1), g);		// populate adjacency matrix based on 
 }
 
 
@@ -60,46 +59,41 @@ void populate_adj_matrix(int n,struct graph *G)
 	}
 }
 
-int FIRST_UNCOLORED(struct graph *G)
-{
-	for(int i=0;i<=G->num_of_matches;i++)		// check all vertices whether colored or not
-	{
-		if(!G->colored[i])
-			return i;					//returns postion of first uncolored vertex
-	}
-}
-
-int RETRIEVE_VERTEX(int p,struct graph *G)
-{
-	return G->matches[p];			//gives vertex at position p
-}
-
-void MARK_COLORED(int p, struct graph *G)
-{
-	G->colored[p]=true;
-}
-
-int NEXT_UNCOLORED(int p, struct graph *G)
-{
-	for(int i=p;i<=G->num_of_matches;i++)
-	{
-		if(!G->colored[i])
-			return i;
-	}
-}
-	
-bool RETRIEVE_EDGE(int i, int j, struct graph *G)
-{
-	return G->matrix[i][j];
-}
-	
-int LOCATE(int x, struct graph *G)
-{
-	for(int i=0;i<=G->num_of_matches;i++)
-	{
-		if(x==G->matches[i])
-			return i;
-	}
-}
-
+//int FIRST_UNCOLORED(struct graph G)
+//{
+//	int p;
+//	for(int i=0;i<G.matches;i++)
+//	{
+//		p=i;					//returns postion of first uncolored vertex
+//		break;
+//	}
+//	return p;
+//
+//	
+//}
+//int RETRIEVE_VERTEX(int p,struct graph G)
+//{
+//	p_v = FIRST_UNCOLORED(G);          		//gets the postion from first_uncolored
+//	int vertex = G.matches[p_v];			//gives vertex at position p
+//	return vertex;
+//}
+//
+//
+//void MARK_COLORED(int p, struct graph G){
+//{
+//	p_v=FIRST_UNCOLORED(G);
+//	for(int p_v=0;p_v<G.colored;p_v++) 			//loop over color status of nodes
+//	{
+//		color[p_v] = true;                        //mark the vertex as colored
+//	}
+//}
+//
+//
+//
+//
+//int NEXT_UNCOLORED(int p, struct graph G)
+//{
+//	
+//	
+//
 
