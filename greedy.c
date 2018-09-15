@@ -36,40 +36,6 @@ bool IS_EDGE(int p_v,int n)
 	return RETRIEVE_EDGE(p_v,p_n);		
 }
 
-int FIRST_UNCOLORED(struct graph G)
-{
-	int p;
-	for(int i=0;i<G.matches;i++)
-	{
-		p=i;					//returns postion of first uncolored vertex
-		break;
-	}
-	return p;
-
-	
-}
-int RETRIEVE_VERTEX(int p,struct graph G)
-{
-	p_v = FIRST_UNCOLORED(G);          		//gets the postion from first_uncolored
-	int vertex = G.matches[p_v];			//gives vertex at position p
-	return vertex;
-}
-
-
-void MARK_COLORED(int p, struct graph G){
-{
-	p_v=FIRST_UNCOLORED(G);
-	for(int p_v=0;p_v<G.colored;p_v++) 			//loop over color status of nodes
-	{
-		color[p_v] = true;                        //mark the vertex as colored
-	}
-}
-
-
-
-
-int NEXT_UNCOLORED(int p, struct graph G)
-{
 	
 	
 
