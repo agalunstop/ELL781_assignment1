@@ -16,7 +16,7 @@ void main(int argc, char *argv[])
 	struct list *ptr_new_clr = &new_clr;
 
 	MAKENULL_G(n,ptr_g);
-	MAKENULL_L(ptr_new_clr);
+	POPULATE(n,ptr_g);
 
 	printf("matches: ");
 	for (int i=0; i<n*(n-1); i++)
@@ -39,10 +39,24 @@ void main(int argc, char *argv[])
 		
 	printf("\n");
 
-	greedy(ptr_g, ptr_new_clr);
-	for(int i=0;i<END(ptr_new_clr);i++)
+
+//	ptr_g->colored[0] = true;
+//	int p_v = FIRST_UNCOLORED(ptr_g);
+//	printf("%d\n",p_v);
+//
+//	int v = RETRIEVE_VERTEX(p_v,ptr_g);
+//	printf("%d\n",v);
+//
+	while(!ALL_COLORED(ptr_g))
 	{
-		printf("%d, ",ptr_new_clr->elements[i]);
-	}	
+		MAKENULL_L(ptr_new_clr);
+		greedy(ptr_g, ptr_new_clr);
+
+		for(int i=0;i<END(ptr_new_clr);i++)
+		{
+			printf("%d, ",ptr_new_clr->elements[i]);
+		}	
+		printf("\n");
+	}
 
 }
