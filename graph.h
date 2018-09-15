@@ -1,12 +1,14 @@
-#include "list.h"
+#include <stdbool.h>
+
+#define MAXSIZE 100
 struct graph		//adjacency matrix
 {
-	int matches[100];			// array to store name of matches
-	bool colored[100];		// save color status of nodes
-	bool matrix[100][100];		// 2D array to store adjacency matrix
-}
+	int matches[MAXSIZE];			// array to store names of matches
+	bool colored[MAXSIZE];			// save color status of nodes
+	bool matrix[MAXSIZE][MAXSIZE];		// 2D array to store adjacency matrix
+};
 
-void MAKENULL(struct graph G);		
+void MAKENULL_G(int n, struct graph *g);		
 void CREATE_GRAPH(int n, struct graph G); // number of teams and struct
 //void INSERT(char x, struct graph* G);
 //struct graph* NEXT(struct graph* G);

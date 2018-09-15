@@ -1,9 +1,8 @@
 struct list			//array based list
 {
-	int maxlength = 100;	// maximum array size
-	int elements[maxlength];		// array
+	int elements[100];		// array
 	int last;						// last element index
-}
+};
 
 //---------------Functions for list------------///
 
@@ -15,5 +14,5 @@ char RETRIEVE(int p,struct list L);
 
 //-------------Common functions--------------///
 
-void MAKENULL(struct list L);
+void MAKENULL_L(struct list L);
 int SIZE(struct list L);
