@@ -68,18 +68,18 @@ int FIRST_UNCOLORED(struct graph G)
 }
 int RETRIEVE_VERTEX(int p,struct graph G)
 {
-	p_v = FIRST_UNCOLORED(G);          		//gets the postion from first_uncolored
-	int vertex = G.matches[p_v];			//gives vertex at position p
+	p = FIRST_UNCOLORED(G);          		//gets the postion from first_uncolored
+	int vertex = G.matches[p];			//gives vertex at position p
 	return vertex;
 }
 
 
-void MARK_COLORED(int p, struct graph G){
+void MARK_COLORED(int p, struct graph G)
 {
-	p_v=FIRST_UNCOLORED(G);
-	for(int p_v=0;p_v<G.colored;p_v++) 			//loop over color status of nodes
+	p=FIRST_UNCOLORED(G);
+	for(int p=0;p<G.colored;p++) 			//loop over color status of nodes
 	{
-		color[p_v] = true;                        //mark the vertex as colored
+		color[p] = true;                        //mark the vertex as colored
 	}
 }
 
@@ -88,6 +88,10 @@ void MARK_COLORED(int p, struct graph G){
 
 int NEXT_UNCOLORED(int p, struct graph G)
 {
+	p=FIRST_UNCOLORED(G);
+	p=p+1
+	return p;
+}
 	
 	
 
