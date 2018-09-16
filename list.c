@@ -1,7 +1,7 @@
 #include "list.h"
 #include <stdio.h>
 
-//------Makes the function to become empty and returns END(L)-----------//
+//------Makes the function to become empty-----------//
 
 void MAKENULL_L(struct list *L){
         L->last = -1;
@@ -27,8 +27,6 @@ void INSERT(int x,int p,struct list *L)
         L->last++;
         L->elements[p]=x;		// insert element to position p
 }
-
-
 //----returns the element at position p in the list-------------//
 
 
@@ -44,10 +42,6 @@ char RETRIEVE(int p,struct list *L)
 			return L->elements[p];
 		}
 }
-
-
-
-
 //----------------Determines the size of array----------------------//
 
 int SIZE(struct list *L){
