@@ -9,7 +9,7 @@ void MAKENULL_G(int n, struct graph *G)
 	G->num_of_matches = n*(n-1);
 	for (int i=0;i<MAXSIZE;i++)
 	{
-		G->matches[i] = 0;		// initializing array to zero
+		G->matches[i] = 0;		        // initializing array to zero
 		G->colored[i]= false;			// initialize uncolored
 		for (int j=0;j<MAXSIZE;j++)
 		{
@@ -19,8 +19,8 @@ void MAKENULL_G(int n, struct graph *G)
 }
 void POPULATE(int n, struct graph *G)
 {
-	write_match_names(n, G);		// write team names to G.matches and G.colored = false
-	populate_adj_matrix(G);		// populate adjacency matrix based on 
+	write_match_names(n, G);		        // write team names to G.matches and G.colored = false
+	populate_adj_matrix(G);		                // populate adjacency matrix based on 
 }
 
 
@@ -33,7 +33,7 @@ void write_match_names(int n, struct graph *G)
 		{
 			if(i!=j)
 			{
-//				printf("%d, %d\n",i,j);		// debug
+//				printf("%d, %d\n",i,j);	                // debug
 				G->matches[m]= 10*i + j;		// first team at tens place, 2nd team at ones place
 //				printf("%d\n",G->matches[m]);		//debug
 				m++;
@@ -44,48 +44,48 @@ void write_match_names(int n, struct graph *G)
 
 void populate_adj_matrix(struct graph *G)
 {
-	int i_first;		//first team in column index matches
-	int i_second;		//second team in column index matches
-	int j_first;		//first team in row index matches
-	int j_second;		//second team in row index matches
+	int i_first;		                                        //first team in column index matches
+	int i_second;		                                        //second team in column index matches
+	int j_first;		                                        //first team in row index matches
+	int j_second;		                                        //second team in row index matches
 
 	int n = G->num_of_matches;
 
-	for (int i=0;i<n;i++)		// column index
+	for (int i=0;i<n;i++)		                                // column index
 	{
-		for (int j=0;j<n;j++)		// row index
+		for (int j=0;j<n;j++)		                        // row index
 		{
-			i_first = G->matches[i]/10;		// tens place
-			i_second = G->matches[i] % 10;	// ones place
-			j_first = G->matches[j]/10;		// tens place
-			j_second = G->matches[j] % 10;	// ones place
+			i_first = G->matches[i]/10;		        // tens place
+			i_second = G->matches[i] % 10;	                // ones place
+			j_first = G->matches[j]/10;		        // tens place
+			j_second = G->matches[j] % 10;	                // ones place
 
 			if((i_first == j_first) && (i_second == j_second))
-				G->matrix[i][j] = 0;			// invalid condition/self loop
+				G->matrix[i][j] = 0;			                    // invalid condition/self loop
 			else
 				if((i_first == j_first)||(i_first == j_second)||
 					(i_second == j_first)||(i_second == j_second))
-					G->matrix[i][j] = 1;			// edge because of team clash
+					G->matrix[i][j] = 1;			            // edge because of team clash
 				else
-					G->matrix[i][j] = 0;			// no edge
+					G->matrix[i][j] = 0;			            // no edge
 		}
 	}
 }
 
 int FIRST_UNCOLORED(struct graph *G)
 {
-	for(int i=0;i<G->num_of_matches;i++)		// check all vertices whether colored or not
+	for(int i=0;i<G->num_of_matches;i++)		                                    // check all vertices whether colored or not
 	{
 		if(!G->colored[i])
 		{
-			return i;					//returns postion of first uncolored vertex
+			return i;					                     //returns postion of first uncolored vertex
 		}
 	}
 }
 
 int RETRIEVE_VERTEX(int p,struct graph *G)
 {
-	return G->matches[p];			//gives vertex at position p
+	return G->matches[p];			                                            //gives vertex at position p
 }
 
 void MARK_COLORED(int p, struct graph *G)
@@ -95,7 +95,7 @@ void MARK_COLORED(int p, struct graph *G)
 
 int NEXT_UNCOLORED(int p, struct graph *G)
 {
-	for(int i=p+1;i<G->num_of_matches;i++)	// start loop from next vertex
+	for(int i=p+1;i<G->num_of_matches;i++)	                                             // start loop from next vertex
 	{
 		if(!G->colored[i])
 			return i;
@@ -104,14 +104,14 @@ int NEXT_UNCOLORED(int p, struct graph *G)
 	
 bool RETRIEVE_EDGE(int i, int j, struct graph *G)
 {
-	return G->matrix[i][j];
+	return G->matrix[i][j]; 								//retrieving edge to check whether it is present in new_clr as well
 }
 	
 int LOCATE(int x, struct graph *G)
 {
 	for(int i=0;i<G->num_of_matches;i++)
 	{
-		if(x==G->matches[i])
+		if(x==G->matches[i])								//returns index of node from matches array
 			return i;
 	}
 }
@@ -119,7 +119,7 @@ int LOCATE(int x, struct graph *G)
 bool ALL_COLORED(struct graph *G)
 {
 	bool all_colored = true;
-	for(int i=0;i<G->num_of_matches;i++)
+	for(int i=0;i<G->num_of_matches;i++)							//returns all_colored=false if G.colored is true 
 	{
 		if(!G->colored[i])
 		{
